@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'cinephilia'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EA27AB9AAE3B44A38E4FC4CA7DD46A2D }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_807400596D6C48AF81E3FD4AE2B2821D }}
           package: .
