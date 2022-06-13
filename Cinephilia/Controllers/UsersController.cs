@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cinephilia.Data;
 using Cinephilia.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cinephilia.Controllers
 {
+
+    [Authorize]
     public class UsersController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -28,6 +31,8 @@ namespace Cinephilia.Controllers
         }
 
         // GET: Users/Details/5
+
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Users == null)

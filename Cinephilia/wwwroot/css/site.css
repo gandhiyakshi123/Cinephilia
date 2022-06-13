@@ -1,20 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Joan&display=swap');
 html {
-  font-size: 14px;
+    font-size: 14px;
+    background-color:bisque;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+       
+    }
 }
 
+
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+   
 }
 
 body {
     margin-bottom: 60px;
     font-family: 'Joan', serif;
+    background-color:indianred;
 }
