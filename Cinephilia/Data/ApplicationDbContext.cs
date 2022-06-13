@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Cinephilia.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cinephilia.Data
@@ -9,5 +10,11 @@ namespace Cinephilia.Data
             : base(options)
         {
         }
+
+        //Global DbSet For each model class that can perform CRUD operations.
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Entertainment> Entertainments { get; set; }
+        public DbSet<BrowseBy> BrowseBies { get; set; }
     }
 }
