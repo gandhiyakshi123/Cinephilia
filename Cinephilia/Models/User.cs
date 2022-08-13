@@ -22,8 +22,8 @@ namespace Cinephilia.Models
 
         // reference to child object : 1 user has can keep many entertainment paths.
 
-     //   public List<Entertainment> Entertainments{ get; set; }
-      //  public List<BrowseBy> BrowseBies{ get; set; }
+       public List<Entertainment> Entertainments{ get; set; }
+       public List<BrowseBy> BrowseBies{ get; set; }
 
 
     }
