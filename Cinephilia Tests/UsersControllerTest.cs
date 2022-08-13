@@ -13,15 +13,15 @@ using System.Threading.Tasks;
 namespace Cinephilia_Tests
 {
     [TestClass]
-    public class BrowseBiesControllerTest
+    public class UsersControllerTest
     {
         // When a test uses a database
         // we need to 'Mock' this data
         // use in-memory databases for testing
 
         private ApplicationDbContext _context;
-        private BrowseBiesController _controller;
-        private List<BrowseBy> _browseBies = new List<BrowseBy>();
+        private UsersController _controller;
+        private List<User> _users = new List<User>();
 
         // Arrange step
         [TestInitialize]
@@ -38,34 +38,24 @@ namespace Cinephilia_Tests
 
             // mock some data
 
-            // users
-            var user = new User { UserId = 1, FirstName = "Jinal", LastName = "Patel", Email = "jipatel123@gmail.com", Gender = "female", PhoneNumber = "7894561234" };
-            _context.Users.Add(user);
+            // list of user
+            var user1 = new User { UserId = 1, FirstName = "Jinal", LastName = "Patel", Email = "jipatel123@gmail.com", Gender = "female", PhoneNumber = "7894561231" };
+            var user2 = new User { UserId = 2, FirstName = "Bansi", LastName = "Bera", Email = "bansibera456@gmail.com", Gender = "female", PhoneNumber = "7412589638" };
+            var user3 = new User { UserId = 3, FirstName = "Vijay", LastName = "Nihalani", Email = "vnihani678@gmail.com", Gender = "male", PhoneNumber = "7532148965" };
+
+            // add users to mock dbs
+            _context.Users.Add(user1);
+            _context.Users.Add(user2);
+            _context.Users.Add(user3);
             _context.SaveChanges();
 
-            // entertainments
-            var entertainment = new Entertainment { EntertainmentId = 1, Category = "Movies" };
-            _context.Entertainments.Add(entertainment);
-            _context.SaveChanges();
-
-            // list of browse
-            var browseBy1 = new BrowseBy { BrowseById = 1, Genre = "Romantic", User = user, Entertainment = entertainment };
-            var browseBy2 = new BrowseBy { BrowseById = 2, Genre = "Action", User = user, Entertainment = entertainment };
-            var browseBy3 = new BrowseBy { BrowseById = 3, Genre = "Comedy", User = user, Entertainment = entertainment };
-
-            // add browsebies to mock dbs
-            _context.BrowseBies.Add(browseBy1);
-            _context.BrowseBies.Add(browseBy2);
-            _context.BrowseBies.Add(browseBy3);
-            _context.SaveChanges();
-
-            // add _browseBies to local list
-            _browseBies.Add(browseBy1);
-            _browseBies.Add(browseBy2);
-            _browseBies.Add(browseBy3);
+            // add _users to local list
+            _users.Add(user1);
+            _users.Add(user2);
+            _users.Add(user3);
 
             // instantiate the controller object with mock db context
-            _controller = new BrowseBiesController(_context);
+            _controller = new UsersController(_context);
         }
 
         // Test 1 > making sure index loads
@@ -90,7 +80,7 @@ namespace Cinephilia_Tests
 
             // extract view
             var viewResult = (ViewResult)result.Result;
-            
+
             // Assert
             Assert.IsNotNull(viewResult);
         }
@@ -103,7 +93,7 @@ namespace Cinephilia_Tests
             var actionResult = _controller.Details(testId);
 
             // convert generic ActionResult object to the expected result
-            var notFoundResult = (NotFoundResult)actionResult.Result; 
+            var notFoundResult = (NotFoundResult)actionResult.Result;
 
             // make sure app returns 404 when searching for an invalid id
             Assert.AreEqual(404, notFoundResult.StatusCode);
@@ -136,6 +126,5 @@ namespace Cinephilia_Tests
             // make sure app loads view when there is valid id
             Assert.IsNotNull(viewResult);
         }
-
     }
 }
